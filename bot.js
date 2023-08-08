@@ -8,7 +8,7 @@ import {
 // This will be the URL where clients can reach your homeserver. Note that this might be different
 // from where the web/chat interface is hosted. The server must support password registration without
 // captcha or terms of service (public servers typically won't work).
-const homeserverUrl = "https://matrix-client.matrix.org";
+const homeserverUrl = process.env.HOMESERVER;
 
 // Use the access token you got from login or registration above.
 const accessToken = process.env.MATRIX_TOKEN;

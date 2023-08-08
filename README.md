@@ -11,14 +11,17 @@ npm install
 ```
 
 Get an access token to an account that can see the poll and export it in your shell.
+Also export your homeserver's client-server-API address, which you can find at `https://<your-server-name>/.well-known/matrix/client`.
 
 ```shell
 export MATRIX_TOKEN="syn_abcde12345"
+export HOMESERVER="https://matrix-client.matrix.org"
 ```
 
 From your client's UI, get the [matrix.to](https://matrix.to) link to the event by selecting *share* and make sure the *link to selected message* box is ticked.
 
-Then call the bot with a command like such as the following, passing the link as the first argument:
+Then call the bot with a command like such as the following, passing the link as the first argument.
+If your terminal or shell escapes pasted strings such as my does, it still works regardless.
 
 ```shell
 node bot.js 'https://matrix.to/\#/\!ouWJizOXmgggWACwar:gruenhage.xyz/$sSh6rhmhzK5wLAcgQ62yIrU1QQ8UmBhfIqoJX1Mo3w8\?via\=amorgan.xyz\&via\=matrix.org\&via\=element.io'
