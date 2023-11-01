@@ -25,13 +25,14 @@ await client.start() //.then(() => console.log("Bot started!"));
 
 const eventlink = process.argv[2];
 if (!eventlink) throw new Error("no event id provided");
-// console.log(eventlink);
+console.log(eventlink);
 
-const [eventid] = eventlink.match(/\$\w+/)
-// console.log("Event ID:", eventid)
+//const [eventid] = eventlink.match(/\$\w+/)
+const [eventid] = eventlink.match(/\$.+?(?=\?)/)
+console.log("Event ID:", eventid)
 
-const [roomid] = eventlink.match(/\![\w.:]+/)
-// console.log("Room ID:", roomid)
+const [roomid] = eventlink.match(/(?<=!)[^\/]+/)
+console.log("Room ID:", roomid)
 
 const event = await client.getEvent(roomid, eventid)
 // console.log(event)
@@ -41,7 +42,7 @@ for (const a of event.content['org.matrix.msc3381.poll.start'].answers) {
     answers[a.id] = a['org.matrix.msc1767.text']
 }
 
-const votes = await client.doRequest("GET", `/_matrix/client/v1/rooms/${roomid}/relations/${eventid}/m.reference/org.matrix.msc3381.poll.response`, {"limit": 100})
+const votes = await client.doRequest("GET", `/_matrix/client/v1/rooms/!${roomid}/relations/${eventid}/m.reference/org.matrix.msc3381.poll.response`, {"limit": 100})
 // console.log(votes)
 // console.log(votes.chunk[0].content)
 
